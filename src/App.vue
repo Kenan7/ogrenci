@@ -15,8 +15,8 @@
       </div>
 
       <v-spacer></v-spacer>
-      <v-btn dark to="/">Listele</v-btn>
-      <v-btn dark to="/ekle">Ekle</v-btn>
+      <v-btn dark to="/" class="mx-4">Listele</v-btn>
+      <v-btn dark to="/ekle" color="green darken-5">Öğrenci Ekle</v-btn>
     </v-app-bar>
 
     <v-main>
