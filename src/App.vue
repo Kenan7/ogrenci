@@ -13,23 +13,23 @@
 
         <v-toolbar-title>Mersin Üniversitesi</v-toolbar-title>
       </div>
+
+      <v-spacer></v-spacer>
+      <v-btn dark to="/">Listele</v-btn>
+      <v-btn dark to="/ekle">Ekle</v-btn>
     </v-app-bar>
 
-    <v-content>
-      <AddStudent />
-    </v-content>
+    <v-main>
+      <router-view></router-view>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-import AddStudent from "./components/AddStudent";
-
 export default {
   name: "App",
 
-  components: {
-    AddStudent,
-  },
+  components: {},
 
   data: () => ({
     //

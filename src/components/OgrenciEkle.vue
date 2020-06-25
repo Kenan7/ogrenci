@@ -5,7 +5,7 @@
         <v-col cols="12" md="4">
           <v-text-field
             v-model="isim"
-            :rules="nameRules"
+            :rules="n1Rules"
             label="İsim"
             required
           ></v-text-field>
@@ -14,7 +14,7 @@
         <v-col cols="12" md="4">
           <v-text-field
             v-model="soyisim"
-            :rules="nameRules"
+            :rules="n2Rules"
             label="Soyisim"
             required
           ></v-text-field>
@@ -23,6 +23,7 @@
         <v-col cols="12" md="4">
           <v-text-field
             v-model="onumara"
+            :rules="n3Rules"
             label="Öğrenci numarası"
             required
           ></v-text-field>
@@ -70,7 +71,7 @@
       </v-row>
       <v-row justify="center" align="center">
         <v-col cols="12" md="2"
-          ><v-btn @click="this.ogrenciEkle">Ekle</v-btn></v-col
+          ><v-btn dark @click="this.ogrenciEkle">Ekle</v-btn></v-col
         >
       </v-row>
     </v-container>
@@ -92,16 +93,11 @@ export default {
     harf_notu: "",
     puanRules: [
       (v) =>
-        (0 <= v && v <= 100) || "puanın 0 ve 100 arasında olması gerekiyor",
+        (0 <= v && v <= 100) || "Puanın 0 ve 100 arasında olması gerekiyor",
     ],
-    nameRules: [
-      (v) => !!v || "Name is required",
-      (v) => v.length <= 10 || "Name must be less than 10 characters",
-    ],
-    emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+/.test(v) || "E-mail must be valid",
-    ],
+    n1Rules: [(v) => !!v || "İsim yazman gerekiyor"],
+    n2Rules: [(v) => !!v || "Soyisim yazman gerekiyor"],
+    n3Rules: [(v) => !!v || "Öğrenci numarasını yazman gerekiyor"],
   }),
 
   watch: {
