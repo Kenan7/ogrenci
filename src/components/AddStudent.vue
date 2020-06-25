@@ -4,9 +4,8 @@
       <v-row>
         <v-col cols="12" md="4">
           <v-text-field
-            v-model="firstname"
+            v-model="isim"
             :rules="nameRules"
-            :counter="10"
             label="İsim"
             required
           ></v-text-field>
@@ -14,9 +13,8 @@
 
         <v-col cols="12" md="4">
           <v-text-field
-            v-model="lastname"
+            v-model="soyisim"
             :rules="nameRules"
-            :counter="10"
             label="Soyisim"
             required
           ></v-text-field>
@@ -24,7 +22,7 @@
 
         <v-col cols="12" md="4">
           <v-text-field
-            v-model="numara"
+            v-model="onumara"
             label="Öğrenci numarası"
             required
           ></v-text-field>
@@ -70,18 +68,24 @@
           </v-col>
         </v-row>
       </v-row>
+      <v-row justify="center" align="center">
+        <v-col cols="12" md="2"
+          ><v-btn @click="this.ogrenciEkle">Ekle</v-btn></v-col
+        >
+      </v-row>
     </v-container>
   </v-form>
 </template>
 
 <script>
+import db from "@/firebaseInit";
 import { required, between } from "vuelidate/lib/validators";
 export default {
   data: () => ({
     valid: true,
-    firstname: "",
-    lastname: "",
-    numara: "",
+    isim: "",
+    soyisim: "",
+    onumara: "",
     midterm: "",
     final: "",
     basari_notu: "",
@@ -146,6 +150,21 @@ export default {
         }
         return (this.harf_notu = "F");
       }
+    },
+
+    ogrenciEkle: function() {
+      db.collection("ogrenci")
+        .doc(this.onumara)
+        .set({
+          isim: this.isim,
+          soyisim: this.soyisim,
+          onumara: this.onumara,
+          vize: this.midterm,
+          final: this.final,
+          basari_notu: this.basari_notu,
+          harf_notu: this.harf_notu,
+        })
+        .then(this.$router.push("/"));
     },
   },
 
